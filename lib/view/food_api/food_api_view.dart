@@ -5,14 +5,14 @@ import '../../model/food_api/food_api_model.dart';
 import '../../service/food_api_service.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class NewsView extends StatefulWidget {
-  const NewsView({super.key});
+class FoodView extends StatefulWidget {
+  const FoodView({super.key});
 
   @override
-  State<NewsView> createState() => _NewsViewState();
+  State<FoodView> createState() => _FoodViewState();
 }
 
-class _NewsViewState extends State<NewsView> {
+class _FoodViewState extends State<FoodView> {
   @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;

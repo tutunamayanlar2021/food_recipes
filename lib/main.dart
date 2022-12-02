@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipes/view/food_api/food_api_view.dart';
 
-void main() => runApp(const MyApp());
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'constants/style_constant.dart';
+import 'view/Home/home_view.dart';
+
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(child: NewsView()),
-      ),
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const Home(),
     );
   }
 }

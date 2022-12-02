@@ -1,40 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'color_constant.dart';
-
 class StyleConstants {
-  //static StyleConstants instance = StyleConstants._init();
-  //StyleConstants._init();
-  final lTitle =
-      TextStyle(fontSize: 55, color: ColorConstants.instance.blackBrown);
-  final lTitleBlack =
-      TextStyle(fontSize: 55, color: ColorConstants.instance.blackBrown);
-  final lTitle2 =
-      TextStyle(fontSize: 25, color: ColorConstants.instance.blackBrown);
-  final mTitle = TextStyle(
-      fontSize: 20,
-      color: ColorConstants.instance.black,
-      fontWeight: FontWeight.bold);
-  final mTitleBlack = TextStyle(
-      fontSize: 20,
-      color: ColorConstants.instance.black,
-      fontWeight: FontWeight.bold);
-  final sbTitle = TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.bold,
-      color: ColorConstants.instance.flower);
-  final sbTitleBrown = TextStyle(
-      fontSize: 13,
-      fontWeight: FontWeight.bold,
-      color: ColorConstants.instance.blackBrown);
-  final sHeaderBrown = TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-      color: ColorConstants.instance.blackSkin);
-  final sHeaderBrownA = TextStyle(
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      color: ColorConstants.instance.blackSkin);
-  final sHeaderBlack = TextStyle(
-      fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black38);
+  static StyleConstants instance = StyleConstants._init();
+  StyleConstants._init();
+  final lTitle = const TextStyle(
+      fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey);
+  final mTitle = const TextStyle(
+      fontSize: 20, fontWeight: FontWeight.bold, color: Colors.orange);
+  final xTitle = const TextStyle(fontSize: 20, color: Colors.white);
+  final sTitle = const TextStyle(
+      fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey);
+  final urunTitle = TextStyle(fontSize: 14, color: Colors.grey[600]);
+  final fiyatTitle = const TextStyle(
+      fontSize: 14, fontWeight: FontWeight.bold, color: Colors.orange);
+  final desTitle = const TextStyle(
+      fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
+  final des2Title = TextStyle(
+      fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey[600]);
 }
