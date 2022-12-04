@@ -17,64 +17,72 @@ class _FoodState extends State<Food> with SingleTickerProviderStateMixin {
   late TabController _tvController;
   // int indexIcerik = 0;
   late List<Categories> foodCategories = [];
-  @override
-  void initState() {
-    super.initState();
-
-    _tvController = TabController(length: 14, vsync: this);
-  }
-
   final List<Widget> _tabs = [];
+  List<Widget> catagoryName(List<Categories> foodCategories) {
+    for (var element in foodCategories) {
+      _tabs.add(Tab(
+        child: Text(element.strCategory.toString()),
+      ));
+
+      print(" food length:${foodCategories.length}");
+      _views.add(Categori(
+        kategori: element.strCategory.toString(),
+        index: foodCategories.indexOf(element),
+      ));
+    }
+    return _tabs;
+  }
 
   final List<Widget> _views = [];
   @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      length: 14,
-      child: FutureBuilder<List<Categories>?>(
-          future: FoodCategoriApiServices().fetchNewsArticle(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              List<Categories> foodCategories = snapshot.data!;
-
-              for (var element in foodCategories) {
-                _tabs.add(Tab(
-                  child: Text(element.strCategory.toString()),
-                ));
-                _views.add(Categori(
-                  kategori: element.strCategory.toString(),
-                  index: foodCategories.indexOf(element),
-                ));
-              }
-
-              return Column(
-                children: [
-                  TabBar(
-                    controller: _tvController,
-                    indicatorColor: Colors.orange,
-                    labelColor: Colors.orange,
-                    unselectedLabelColor: Colors.grey,
-                    isScrollable: true,
-                    labelStyle: StyleConstants.instance.sTitle,
-                    tabs: _tabs,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      //burada bir container vardı
-                      padding: PaddingConstants.instance.paddingAll8,
-                      child: TabBarView(
-                          controller: _tvController, children: _views),
-                    ),
-                  )
-                ],
-              );
-            }
-          }),
-    );
+  void initState() {
+    super.initState();
+    setState(() {
+      _tvController = TabController(length: 14, vsync: this);
+    });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return _tabBarWidget(_tabs);
+  }
+
+  Widget _tabBarWidget(List<Widget> tabs) => FutureBuilder<List<Categories>?>(
+      future: FoodCategoriApiServices().fetchNewsArticle(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          List<Categories> foodCategories = snapshot.data!;
+
+          if (tabs.length == foodCategories.length) {
+          } else {
+            catagoryName(foodCategories);
+          }
+
+          return Column(
+            children: [
+              TabBar(
+                controller: _tvController,
+                indicatorColor: Colors.orange,
+                labelColor: Colors.orange,
+                unselectedLabelColor: Colors.grey,
+                isScrollable: true,
+                labelStyle: StyleConstants.instance.sTitle,
+                tabs: _tabs,
+              ),
+              Expanded(
+                child: Padding(
+                  //burada bir container vardı
+                  padding: PaddingConstants.instance.paddingAll8,
+                  child:
+                      TabBarView(controller: _tvController, children: _views),
+                ),
+              )
+            ],
+          );
+        }
+      });
 }

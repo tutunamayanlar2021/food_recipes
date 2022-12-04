@@ -68,14 +68,14 @@ class _CategoriState extends State<Categori> {
                 for (var element in foodCategories!) {
                   gosterilecekListe.add(urunKarti(
                       element.strMeal.toString(),
-                      element.strMealThumb.toString(),
+                      element.idMeal.toString(),
                       element.strMealThumb.toString(),
                       mevcut: true));
                 }
 
                 index++;
 
-                print(index);
+                // print(index);
               }
 
               // print(index);
@@ -134,6 +134,7 @@ class _CategoriState extends State<Categori> {
                   spreadRadius: 2.0)
             ]),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
@@ -151,17 +152,13 @@ class _CategoriState extends State<Categori> {
                 ),
               ),
             ),
-            Text(
-              isim,
-              style: StyleConstants.instance.urunTitle,
-            ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(bottom: 10, left: 5),
               child: Text(
                 isim,
-                style: StyleConstants.instance.fiyatTitle,
+                style: StyleConstants.instance.urunTitle,
               ),
-            )
+            ),
           ],
         ),
       ),
