@@ -14,24 +14,24 @@ class Food extends StatefulWidget {
 }
 
 class _FoodState extends State<Food> with SingleTickerProviderStateMixin {
-  late TabController tvController;
+  late TabController _tvController;
   // int indexIcerik = 0;
   late List<Categories> foodCategories = [];
   @override
   void initState() {
     super.initState();
 
-    tvController = TabController(length: 14, vsync: this);
+    _tvController = TabController(length: 14, vsync: this);
   }
 
-  final List<Tab> _tabs = [];
+  final List<Widget> _tabs = [];
 
   final List<Widget> _views = [];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: foodCategories.length,
+      length: 14,
       child: FutureBuilder<List<Categories>?>(
           future: FoodCategoriApiServices().fetchNewsArticle(),
           builder: (context, snapshot) {
@@ -48,14 +48,14 @@ class _FoodState extends State<Food> with SingleTickerProviderStateMixin {
                 ));
                 _views.add(Categori(
                   kategori: element.strCategory.toString(),
-                  foodCategori: [element],
+                  index: foodCategories.indexOf(element),
                 ));
               }
 
               return Column(
                 children: [
                   TabBar(
-                    controller: tvController,
+                    controller: _tvController,
                     indicatorColor: Colors.orange,
                     labelColor: Colors.orange,
                     unselectedLabelColor: Colors.grey,
@@ -68,7 +68,7 @@ class _FoodState extends State<Food> with SingleTickerProviderStateMixin {
                       //burada bir container vardı
                       padding: PaddingConstants.instance.paddingAll8,
                       child: TabBarView(
-                          controller: tvController, children: _views),
+                          controller: _tvController, children: _views),
                     ),
                   )
                 ],

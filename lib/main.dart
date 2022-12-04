@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipes/view/food_api/food_api_view.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'constants/style_constant.dart';
 import 'view/Home/home_view.dart';
 
 void main() {

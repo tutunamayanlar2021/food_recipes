@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipes/view/food_api/food_api_view.dart';
 import '../../constants/style_constant.dart';
 import '../food_api/food.dart';
 
@@ -14,7 +15,7 @@ class _HomeState extends State<Home> {
   late int indexIcerik = 0;
   @override
   void initState() {
-    _icerikler = [const Food()];
+    _icerikler = [const Food(), FoodView()];
     super.initState();
   }
 

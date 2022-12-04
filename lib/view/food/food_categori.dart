@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipes/model/food_by_categori_api/food_by_categori_model.dart';
 import '../../constants/padding_constant.dart';
 import '../../constants/style_constant.dart';
 import '../../model/food_categori_api/food_categori_model.dart';
+import '../../service/food_categori_service.dart';
+import '../../service/foof_byCategori_service.dart';
 import 'food_detail.dart';
 
 class Categori extends StatefulWidget {
   final String kategori;
-  final List<Categories> foodCategori;
+  final int index;
 
-  const Categori({Key? key, required this.kategori, required this.foodCategori})
+  const Categori({Key? key, required this.kategori, required this.index})
       : super(key: key);
 
   @override
@@ -17,32 +20,93 @@ class Categori extends StatefulWidget {
 
 class _CategoriState extends State<Categori> {
   List<Widget> gosterilecekListe = [];
-  List<String> foodCategories = [];
 
-  late List<String> categori = [];
   @override
   void initState() {
     super.initState();
-    for (var element in widget.foodCategori) {
-      /* if (widget.kategori == element.strCategory) {
-        gosterilecekListe.add(urunKarti("Zeytin Yağı", "99.99 TL",
-            "https://cdn.pixabay.com/photo/2016/05/24/13/29/olive-oil-1412361__340.jpg",
-            mevcut: false));
-      }*/
-    }
+    //foodIndex(widget.index);
   }
 
+//
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 12.0,
-        crossAxisSpacing: 12.0,
-        childAspectRatio: 1, //en boy oranı
-        padding: PaddingConstants.instance.paddingAll8,
-        children: gosterilecekListe);
+    return getFoodName(widget.index);
   }
 
+  Widget getFoodName(int index) => FutureBuilder<List<Categories>?>(
+      future: FoodCategoriApiServices().fetchNewsArticle(),
+      builder: ((context, snapshot) {
+        if (snapshot.hasData &&
+            snapshot.connectionState == ConnectionState.done) {
+          List<Categories>? foodName = snapshot.data;
+          List<String> nameofFood = [];
+          for (var element in foodName!) {
+            nameofFood.add(element.strCategory.toString());
+          }
+
+          // print(foodName.length);
+
+          return showFood(nameofFood, index);
+        } else {
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      }));
+
+  Widget showFood(List<String> foodName, int index) =>
+      FutureBuilder<List<Meal>?>(
+          future: FoodByCategoriApiServices().fetchNewsArticle(foodName, index),
+          builder: ((context, snapshot) {
+            if (snapshot.hasData &&
+                snapshot.connectionState == ConnectionState.done) {
+              List<Meal>? foodCategories = snapshot.data;
+
+              if (widget.kategori == foodName[index]) {
+                for (var element in foodCategories!) {
+                  gosterilecekListe.add(urunKarti(
+                      element.strMeal.toString(),
+                      element.strMealThumb.toString(),
+                      element.strMealThumb.toString(),
+                      mevcut: true));
+                }
+
+                index++;
+
+                print(index);
+              }
+
+              // print(index);
+
+/* while (index < foodName.length) {
+            if (widget.kategori == foodName[index]) {
+              for (var element in foodCategories!) {
+                gosterilecekListe.add(urunKarti(
+                    element.strMeal.toString(),
+                    element.strMealThumb.toString(),
+                    element.strMealThumb.toString(),
+                    mevcut: true));
+              }
+            }
+            index++;
+          }*/
+              return GridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12.0,
+                  crossAxisSpacing: 12.0,
+                  childAspectRatio: 1, //en boy oranı
+                  padding: PaddingConstants.instance.paddingAll8,
+                  children: gosterilecekListe);
+            } else {
+              return Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          }));
   Widget urunKarti(String isim, String fiyat, String resimYolu,
       {bool mevcut = true}) {
     return GestureDetector(
@@ -76,7 +140,7 @@ class _CategoriState extends State<Categori> {
               child: Padding(
                 padding: PaddingConstants.instance.paddingAllNormal,
                 child: Hero(
-                  tag: resimYolu,
+                  tag: isim,
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -94,7 +158,7 @@ class _CategoriState extends State<Categori> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                fiyat,
+                isim,
                 style: StyleConstants.instance.fiyatTitle,
               ),
             )
