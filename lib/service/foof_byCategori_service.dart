@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:food_recipes/model/food_categori_api/food_categori_model.dart';
 
 import '../model/food_by_categori_api/food_by_categori_model.dart';
 
 class FoodByCategoriApiServices {
-  final String _harf = "Beef";
   final String _url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=";
 
   late Dio dio;
@@ -15,7 +13,6 @@ class FoodByCategoriApiServices {
   Future<List<Meal>?> fetchNewsArticle(List<String> foodName, int index) async {
     try {
       try {
-        List<Meal> responseList = [];
         List<FoodbyCategoriResponse> responseList2 = [];
 
         while (index < foodName.length) {

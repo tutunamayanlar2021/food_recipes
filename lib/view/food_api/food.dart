@@ -26,10 +26,10 @@ class _FoodState extends State<Food> with SingleTickerProviderStateMixin {
 
       print(" food length:${foodCategories.length}");
       _views.add(Categori(
-        kategori: element.strCategory.toString(),
-        index: foodCategories.indexOf(element),
-      ));
+          kategori: element.strCategory.toString(),
+          index: foodCategories.indexOf(element)));
     }
+
     return _tabs;
   }
 

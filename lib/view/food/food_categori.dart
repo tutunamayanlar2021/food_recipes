@@ -66,9 +66,7 @@ class _CategoriState extends State<Categori> {
 
               if (widget.kategori == foodName[index]) {
                 for (var element in foodCategories!) {
-                  gosterilecekListe.add(urunKarti(
-                      element.strMeal.toString(),
-                      element.idMeal.toString(),
+                  gosterilecekListe.add(urunKarti(element.strMeal.toString(),
                       element.strMealThumb.toString(),
                       mevcut: true));
                 }
@@ -107,8 +105,7 @@ class _CategoriState extends State<Categori> {
               );
             }
           }));
-  Widget urunKarti(String isim, String fiyat, String resimYolu,
-      {bool mevcut = true}) {
+  Widget urunKarti(String isim, String resimYolu, {bool mevcut = true}) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -117,9 +114,11 @@ class _CategoriState extends State<Categori> {
               builder: (context) => FoodDetail(
                 urunAciklama: "Bu kısımda ürün açıklaması olucak",
                 urunAdi: isim,
-                urunFiyati: fiyat,
+
                 urunUrl: resimYolu,
                 mevcut: mevcut,
+
+                //  index: widget.index, mealsByName: mealsByName,
               ),
             )); //take us to the detail page
       },

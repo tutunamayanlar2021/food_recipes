@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         elevation: 0.0,
         title: Text(
-          "Uçarak Gelsin",
+          "Food Recipe",
           style: StyleConstants.instance.lTitle,
         ),
       ),
