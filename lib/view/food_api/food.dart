@@ -66,8 +66,8 @@ class _FoodState extends State<Food> with SingleTickerProviderStateMixin {
             children: [
               TabBar(
                 controller: _tvController,
-                indicatorColor: Colors.orange,
-                labelColor: Colors.orange,
+                indicatorColor: const Color(0xFFFEB65C),
+                labelColor: const Color(0xFFFEB65C),
                 unselectedLabelColor: Colors.grey,
                 isScrollable: true,
                 labelStyle: StyleConstants.instance.sTitle,

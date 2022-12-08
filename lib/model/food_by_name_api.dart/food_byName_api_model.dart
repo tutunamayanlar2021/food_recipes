@@ -7,15 +7,15 @@ class FoodbyNameResponse {
     if (json['meals'] != null) {
       meals = <MealsByName>[];
       json['meals'].forEach((v) {
-        meals!.add(new MealsByName.fromJson(v));
+        meals!.add(MealsByName.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.meals != null) {
-      data['meals'] = this.meals!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (meals != null) {
+      data['meals'] = meals!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -189,59 +189,59 @@ class MealsByName {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['idMeal'] = this.idMeal;
-    data['strMeal'] = this.strMeal;
-    data['strDrinkAlternate'] = this.strDrinkAlternate;
-    data['strCategory'] = this.strCategory;
-    data['strArea'] = this.strArea;
-    data['strInstructions'] = this.strInstructions;
-    data['strMealThumb'] = this.strMealThumb;
-    data['strTags'] = this.strTags;
-    data['strYoutube'] = this.strYoutube;
-    data['strIngredient1'] = this.strIngredient1;
-    data['strIngredient2'] = this.strIngredient2;
-    data['strIngredient3'] = this.strIngredient3;
-    data['strIngredient4'] = this.strIngredient4;
-    data['strIngredient5'] = this.strIngredient5;
-    data['strIngredient6'] = this.strIngredient6;
-    data['strIngredient7'] = this.strIngredient7;
-    data['strIngredient8'] = this.strIngredient8;
-    data['strIngredient9'] = this.strIngredient9;
-    data['strIngredient10'] = this.strIngredient10;
-    data['strIngredient11'] = this.strIngredient11;
-    data['strIngredient12'] = this.strIngredient12;
-    data['strIngredient13'] = this.strIngredient13;
-    data['strIngredient14'] = this.strIngredient14;
-    data['strIngredient15'] = this.strIngredient15;
-    data['strIngredient16'] = this.strIngredient16;
-    data['strIngredient17'] = this.strIngredient17;
-    data['strIngredient18'] = this.strIngredient18;
-    data['strIngredient19'] = this.strIngredient19;
-    data['strIngredient20'] = this.strIngredient20;
-    data['strMeasure1'] = this.strMeasure1;
-    data['strMeasure2'] = this.strMeasure2;
-    data['strMeasure3'] = this.strMeasure3;
-    data['strMeasure4'] = this.strMeasure4;
-    data['strMeasure5'] = this.strMeasure5;
-    data['strMeasure6'] = this.strMeasure6;
-    data['strMeasure7'] = this.strMeasure7;
-    data['strMeasure8'] = this.strMeasure8;
-    data['strMeasure9'] = this.strMeasure9;
-    data['strMeasure10'] = this.strMeasure10;
-    data['strMeasure11'] = this.strMeasure11;
-    data['strMeasure12'] = this.strMeasure12;
-    data['strMeasure13'] = this.strMeasure13;
-    data['strMeasure14'] = this.strMeasure14;
-    data['strMeasure15'] = this.strMeasure15;
-    data['strMeasure16'] = this.strMeasure16;
-    data['strMeasure17'] = this.strMeasure17;
-    data['strMeasure18'] = this.strMeasure18;
-    data['strMeasure19'] = this.strMeasure19;
-    data['strMeasure20'] = this.strMeasure20;
-    data['strSource'] = this.strSource;
-    data['strImageSource'] = this.strImageSource;
-    data['strCreativeCommonsConfirmed'] = this.strCreativeCommonsConfirmed;
-    data['dateModified'] = this.dateModified;
+    data['idMeal'] = idMeal;
+    data['strMeal'] = strMeal;
+    data['strDrinkAlternate'] = strDrinkAlternate;
+    data['strCategory'] = strCategory;
+    data['strArea'] = strArea;
+    data['strInstructions'] = strInstructions;
+    data['strMealThumb'] = strMealThumb;
+    data['strTags'] = strTags;
+    data['strYoutube'] = strYoutube;
+    data['strIngredient1'] = strIngredient1;
+    data['strIngredient2'] = strIngredient2;
+    data['strIngredient3'] = strIngredient3;
+    data['strIngredient4'] = strIngredient4;
+    data['strIngredient5'] = strIngredient5;
+    data['strIngredient6'] = strIngredient6;
+    data['strIngredient7'] = strIngredient7;
+    data['strIngredient8'] = strIngredient8;
+    data['strIngredient9'] = strIngredient9;
+    data['strIngredient10'] = strIngredient10;
+    data['strIngredient11'] = strIngredient11;
+    data['strIngredient12'] = strIngredient12;
+    data['strIngredient13'] = strIngredient13;
+    data['strIngredient14'] = strIngredient14;
+    data['strIngredient15'] = strIngredient15;
+    data['strIngredient16'] = strIngredient16;
+    data['strIngredient17'] = strIngredient17;
+    data['strIngredient18'] = strIngredient18;
+    data['strIngredient19'] = strIngredient19;
+    data['strIngredient20'] = strIngredient20;
+    data['strMeasure1'] = strMeasure1;
+    data['strMeasure2'] = strMeasure2;
+    data['strMeasure3'] = strMeasure3;
+    data['strMeasure4'] = strMeasure4;
+    data['strMeasure5'] = strMeasure5;
+    data['strMeasure6'] = strMeasure6;
+    data['strMeasure7'] = strMeasure7;
+    data['strMeasure8'] = strMeasure8;
+    data['strMeasure9'] = strMeasure9;
+    data['strMeasure10'] = strMeasure10;
+    data['strMeasure11'] = strMeasure11;
+    data['strMeasure12'] = strMeasure12;
+    data['strMeasure13'] = strMeasure13;
+    data['strMeasure14'] = strMeasure14;
+    data['strMeasure15'] = strMeasure15;
+    data['strMeasure16'] = strMeasure16;
+    data['strMeasure17'] = strMeasure17;
+    data['strMeasure18'] = strMeasure18;
+    data['strMeasure19'] = strMeasure19;
+    data['strMeasure20'] = strMeasure20;
+    data['strSource'] = strSource;
+    data['strImageSource'] = strImageSource;
+    data['strCreativeCommonsConfirmed'] = strCreativeCommonsConfirmed;
+    data['dateModified'] = dateModified;
     return data;
   }
 }

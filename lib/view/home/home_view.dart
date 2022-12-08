@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   late int indexIcerik = 0;
   @override
   void initState() {
-    _icerikler = [const Food(), FoodView()];
+    _icerikler = [const Food(), const FoodView()];
     super.initState();
   }
 
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: _icerikler[indexIcerik],
-      drawer: Drawer(
+      /* drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.all(0.0),
           children: [
@@ -73,14 +73,16 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-      ),
+      ),*/
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: indexIcerik,
         selectedItemColor: Colors.orange,
+        unselectedItemColor: const Color(0xFFCAE3F1),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Anasayfa"),
+          BottomNavigationBarItem(icon: Icon(Icons.filter_list), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: "Sepetim"),
+              icon: Icon(Icons.add_circle), label: "Sepetim"),
         ],
         onTap: (int buttonNo) {
           setState(() {
