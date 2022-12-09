@@ -17,13 +17,6 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.amber,
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
-      ),
       body: FutureBuilder<Meal?>(
           future: foodAPIService.getFoodDetails(widget.foodID),
           builder: (context, snapshot) {
@@ -34,11 +27,28 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                     Meals meal = snapshot.data!.meals![index];
                     var ingreditientsList =
                         foodAPIService.getIngreditientsList(meal);
-                    var measaureList = foodAPIService.getMeasureListCalc(meal);
+
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Stack(
+                          children: [
+                            Hero(
+                                tag: meal.strMealThumb ?? "",
+                                child: Image.network(meal.strMealThumb ?? "")),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(
+                                Icons.arrow_back,
+                                color: Colors.orange,
+                              ),
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
                         Text(meal.strMeal ?? ""),
                         Container(
                           height: 400,
