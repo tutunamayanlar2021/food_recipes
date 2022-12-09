@@ -7,7 +7,8 @@ import '../../models/Meal.dart';
 class CategoryScreen extends StatefulWidget {
   final String? categoryName;
 
-  CategoryScreen({Key? key, required this.categoryName}) : super(key: key);
+  const CategoryScreen({Key? key, required this.categoryName})
+      : super(key: key);
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
