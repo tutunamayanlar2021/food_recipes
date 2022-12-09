@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipes/view/food_api/food_api_view.dart';
 import '../../constants/style_constant.dart';
-import '../food_api/food.dart';
+import '../food_api/FoodTabScreen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class _HomeState extends State<Home> {
   late int indexIcerik = 0;
   @override
   void initState() {
-    _icerikler = [const Food(), const FoodView()];
+    _icerikler = [const FoodTabScreen(), Container()];
     super.initState();
   }
 
@@ -34,46 +33,6 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: _icerikler[indexIcerik],
-      /* drawer: Drawer(
-        child: ListView(
-          padding: const EdgeInsets.all(0.0),
-          children: [
-            UserAccountsDrawerHeader(
-              arrowColor: Colors.amber,
-              accountName: const Text("Kader"),
-              accountEmail: const Text("kaderoral2147@gmail.com"),
-              currentAccountPicture: Container(
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                      image: NetworkImage(
-                          "https://cdn.pixabay.com/photo/2016/11/22/06/05/girl-1848454__340.jpg"),
-                      fit: BoxFit.cover),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-              decoration: const BoxDecoration(color: Colors.orange),
-            ),
-            ListTile(
-              title: const Text("Siparişlerim"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("İndirim Kuponlarım"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Ayarlar"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Çıkış Yap"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            )
-          ],
-        ),
-      ),*/
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: indexIcerik,
