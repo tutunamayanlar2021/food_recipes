@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipes/view/food/FoodDetailScreenn.dart';
 import '../../constants/style_constant.dart';
 import '../food_api/FoodTabScreen.dart';
+import '../search/SearchScreen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,11 +12,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late List<Widget> _icerikler;
-  late int indexIcerik = 0;
+  late List<Widget> _contents;
+  late int indexContents = 0;
   @override
   void initState() {
-    _icerikler = [const FoodTabScreen(), Container()];
+    _contents = [const FoodTabScreen(), SearchScreen()];
     super.initState();
   }
 
@@ -28,24 +30,22 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         elevation: 0.0,
         title: Text(
-          "Food Recipe",
+          indexContents == 0 ? "Foody" : "",
           style: StyleConstants.instance.lTitle,
         ),
       ),
-      body: _icerikler[indexIcerik],
+      body: _contents[indexContents],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: indexIcerik,
+        currentIndex: indexContents,
         selectedItemColor: Colors.orange,
-        unselectedItemColor: const Color(0xFFCAE3F1),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.filter_list), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle), label: "Sepetim"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
         ],
         onTap: (int buttonNo) {
           setState(() {
-            indexIcerik = buttonNo;
+            indexContents = buttonNo;
           });
         },
       ),

@@ -21,7 +21,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
   @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
-    double displayHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: FutureBuilder<Meal?>(
           future: foodAPIService.getFoodDetails(widget.foodID),
@@ -86,7 +86,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                 itemBuilder: (context, index) {
                                   return Text(
                                     ingreditientsList[index]!.toString(),
-                                    style: StyleConstants.instance.sTitle,
+                                    style: StyleConstants.instance.sTitle3,
                                   );
                                 },
                               ),
@@ -105,7 +105,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
                             meal.strInstructions ?? "",
-                            style: StyleConstants.instance.sTitle,
+                            style: StyleConstants.instance.sTitle3,
                             textAlign: TextAlign.center,
                           ),
                         ),

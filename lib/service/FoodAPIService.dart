@@ -56,12 +56,11 @@ class FoodAPIService {
           await Dio().get(foodDetailsBaseURL + foodID.toString());
       if (response.statusCode == 200) {
         return Meal.fromJson(response.data);
-      } else {
-        return Future.value();
       }
     } catch (e) {
       rethrow;
     }
+    return null;
   }
 
   Future<List<Meals>> getFoodAll() async {

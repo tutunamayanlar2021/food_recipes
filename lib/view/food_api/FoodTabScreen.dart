@@ -28,10 +28,12 @@ class _FoodTabScreenState extends State<FoodTabScreen>
 
   void getFoodCategories() async {
     categoryList = await foodAPIService.getFoodCategories();
-    setState(() {
-      _tvController = TabController(
-          length: categoryList?.categories?.length ?? 0, vsync: this);
-    });
+    if (mounted) {
+      setState(() {
+        _tvController = TabController(
+            length: categoryList?.categories?.length ?? 0, vsync: this);
+      });
+    }
   }
 
   @override
@@ -45,8 +47,8 @@ class _FoodTabScreenState extends State<FoodTabScreen>
         children: [
           TabBar(
             controller: _tvController,
-            indicatorColor: const Color(0xFFFEB65C),
-            labelColor: const Color(0xFFFEB65C),
+            indicatorColor: Colors.orange,
+            labelColor: Colors.orange,
             unselectedLabelColor: Colors.grey,
             isScrollable: true,
             labelStyle: StyleConstants.instance.sTitle,

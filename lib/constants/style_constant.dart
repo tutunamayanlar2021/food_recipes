@@ -6,13 +6,19 @@ class StyleConstants {
   static StyleConstants instance = StyleConstants._init();
   StyleConstants._init();
   final lTitle = const TextStyle(
-      fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey);
+      fontSize: 40,
+      fontWeight: FontWeight.bold,
+      color: Colors.orange,
+      fontFamily: "Cookie");
   final mTitle = const TextStyle(
       fontSize: 20, fontWeight: FontWeight.bold, color: Colors.orange);
   final xTitle = const TextStyle(fontSize: 20, color: Colors.white);
   final sTitle = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+  );
+  final sTitle3 = TextStyle(
     fontSize: 16,
-    color: Colors.black,
   );
   final sTitle2 =
       TextStyle(fontSize: 25, color: Colors.black, fontFamily: "Cookie");
