@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipes/constants/color_constant.dart';
+import 'package:food_recipes/constants/style_constant.dart';
 import 'package:food_recipes/models/Meal.dart';
 import 'package:food_recipes/service/FoodAPIService.dart';
+
+import 'package:url_launcher/url_launcher_string.dart';
 
 class FoodDetailScreen extends StatefulWidget {
   final String? foodID;
@@ -16,6 +20,8 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double displayWidth = MediaQuery.of(context).size.width;
+    double displayHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: FutureBuilder<Meal?>(
           future: foodAPIService.getFoodDetails(widget.foodID),
@@ -27,7 +33,6 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                     Meals meal = snapshot.data!.meals![index];
                     var ingreditientsList =
                         foodAPIService.getIngreditientsList(meal);
-
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -49,15 +54,94 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                             )
                           ],
                         ),
-                        Text(meal.strMeal ?? ""),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          meal.strMeal ?? "",
+                          style: StyleConstants.instance.desTitle,
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Ingredients",
+                                style: StyleConstants.instance.subTitle,
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: ingreditientsList.length,
+                                padding: const EdgeInsets.all(10),
+                                itemBuilder: (context, index) {
+                                  return Text(
+                                    ingreditientsList[index]!.toString(),
+                                    style: StyleConstants.instance.sTitle,
+                                  );
+                                },
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                "Instructions",
+                                style: StyleConstants.instance.subTitle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            meal.strInstructions ?? "",
+                            style: StyleConstants.instance.sTitle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                         Container(
-                          height: 400,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: ingreditientsList.length,
-                            itemBuilder: (context, index) {
-                              return Text(ingreditientsList[index].toString());
-                            },
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30)),
+                          width: displayWidth / 1.3,
+                          child: ElevatedButton(
+                            onPressed: (() async {
+                              if (await canLaunchUrlString(
+                                  meal.strYoutube.toString())) {
+                                await launchUrlString(
+                                    meal.strYoutube.toString());
+                              } else {
+                                showError("Sorry video not found");
+                                throw "could not launch ${meal.strYoutube}";
+                              }
+                            }),
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              primary: Colors.orange,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.play_arrow,
+                                  color: ColorConstants.instance.black,
+                                ),
+                                Text(
+                                  "Go to youtube video",
+                                  style: StyleConstants.instance.sTitle2,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -70,5 +154,23 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
             }
           }),
     );
+  }
+
+  Future<dynamic> showError(String message) {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      "Close",
+                      style: StyleConstants.instance.sTitle,
+                    ))
+              ],
+              content: Text(message),
+            ));
   }
 }
