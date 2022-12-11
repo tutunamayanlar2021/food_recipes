@@ -13,6 +13,8 @@ class FoodAPIService {
 
   static const foodDetailsBaseURL =
       "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+  static const foodByletterBaseURL =
+      "https://www.themealdb.com/api/json/v1/1/search.php?f=";
 
   factory FoodAPIService() {
     return _singleton;
@@ -62,134 +64,139 @@ class FoodAPIService {
     }
   }
 
+  Future<List<Meals>> getFoodAll() async {
+    try {
+      String _harf = "a";
+      int c = "a".codeUnitAt(0);
+      int end = "z".codeUnitAt(0);
+      List<Meals> listMe = [];
+      while (c <= end) {
+        _harf = String.fromCharCode(c);
+        Response response = await Dio().get(foodByletterBaseURL + _harf);
+        var meal = Meal.fromJson(response.data);
+
+        c++;
+        if (meal.meals != null) {
+          for (var element in meal.meals!) {
+            listMe.add(element);
+          }
+        }
+        c++;
+      }
+      return listMe;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   List<String?> getIngreditientsList(Meals meal) {
     List<String?> ingreditientsList = [];
-    if (meal.strIngredient1 != "") {
+    if (meal.strIngredient1 != "" &&
+        meal.strMeasure1 != "" &&
+        meal.strMeasure1 != " ") {
       ingreditientsList.add("${meal.strMeasure1} ${meal.strIngredient1}");
     }
-    if (meal.strIngredient2 != null) {
+    if (meal.strIngredient2 != null &&
+        meal.strMeasure2 != "" &&
+        meal.strMeasure2 != " ") {
       ingreditientsList.add("${meal.strMeasure2} ${meal.strIngredient2}");
     }
-    if (meal.strIngredient3 != null) {
+    if (meal.strIngredient3 != null &&
+        meal.strMeasure3 != "" &&
+        meal.strMeasure3 != " ") {
       ingreditientsList.add("${meal.strMeasure3} ${meal.strIngredient3}");
     }
-    if (meal.strIngredient4 != null) {
+    if (meal.strIngredient4 != null &&
+        meal.strMeasure4 != "" &&
+        meal.strMeasure4 != " ") {
       ingreditientsList.add("${meal.strMeasure4} ${meal.strIngredient4}");
     }
-    if (meal.strIngredient5 != null) {
+    if (meal.strIngredient5 != null &&
+        meal.strMeasure5 != "" &&
+        meal.strMeasure5 != " " &&
+        meal.strIngredient5 != "") {
       ingreditientsList.add("${meal.strMeasure5} ${meal.strIngredient5}");
     }
-    if (meal.strIngredient6 != null) {
+    if (meal.strIngredient6 != null &&
+        meal.strMeasure6 != "" &&
+        meal.strMeasure6 != "") {
       ingreditientsList.add("${meal.strMeasure6} ${meal.strIngredient6}");
     }
-    if (meal.strIngredient7 != null) {
+    if (meal.strIngredient7 != null &&
+        meal.strMeasure7 != "" &&
+        meal.strMeasure7 != " ") {
       ingreditientsList.add("${meal.strMeasure7} ${meal.strIngredient7}");
     }
-    if (meal.strIngredient8 != null) {
+    if (meal.strIngredient8 != null &&
+        meal.strMeasure8 != "" &&
+        meal.strMeasure8 != " ") {
       ingreditientsList.add("${meal.strMeasure8} ${meal.strIngredient8}");
     }
-    if (meal.strIngredient9 != null) {
+    if (meal.strIngredient9 != null &&
+        meal.strMeasure9 != "" &&
+        meal.strMeasure9 != " ") {
       ingreditientsList.add("${meal.strMeasure9} ${meal.strIngredient9}");
     }
-    if (meal.strIngredient10 != null) {
+    if (meal.strIngredient10 != null &&
+        meal.strMeasure10 != "" &&
+        meal.strMeasure10 != " ") {
       ingreditientsList.add("${meal.strMeasure10} ${meal.strIngredient10}");
     }
-    if (meal.strIngredient11 != null) {
+    if (meal.strIngredient11 != null &&
+        meal.strMeasure11 != "" &&
+        meal.strMeasure11 != " ") {
       ingreditientsList.add("${meal.strMeasure11} ${meal.strIngredient11}");
     }
-    if (meal.strIngredient12 != null) {
+    if (meal.strIngredient12 != null &&
+        meal.strMeasure12 != "" &&
+        meal.strMeasure12 != " ") {
       ingreditientsList.add("${meal.strMeasure12} ${meal.strIngredient12}");
     }
-    if (meal.strIngredient13 != null) {
+    if (meal.strIngredient13 != null &&
+        meal.strMeasure13 != "" &&
+        meal.strMeasure13 != " ") {
       ingreditientsList.add("${meal.strMeasure13} ${meal.strIngredient13}");
     }
-    if (meal.strIngredient14 != null) {
+    if (meal.strIngredient14 != null &&
+        meal.strMeasure14 != "" &&
+        meal.strMeasure14 != " ") {
       ingreditientsList.add("${meal.strMeasure14} ${meal.strIngredient14}");
     }
-    if (meal.strIngredient15 != null) {
+    if (meal.strIngredient15 != null &&
+        meal.strMeasure15 != "" &&
+        meal.strMeasure15 != " ") {
       ingreditientsList.add("${meal.strMeasure15} ${meal.strIngredient15}");
     }
-    if (meal.strIngredient16 != null) {
+    if (meal.strIngredient16 != "" &&
+        meal.strMeasure16 != "" &&
+        meal.strMeasure16 != " " &&
+        meal.strMeasure16 != null) {
       ingreditientsList.add("${meal.strMeasure16} ${meal.strIngredient16}");
     }
-    if (meal.strIngredient17 != null) {
+    if (meal.strIngredient17 != "" &&
+        meal.strMeasure17 != "" &&
+        meal.strMeasure17 != " " &&
+        meal.strMeasure17 != null) {
       ingreditientsList.add("${meal.strMeasure17} ${meal.strIngredient17}");
     }
-    if (meal.strIngredient18 != null) {
+    if (meal.strIngredient18 != "" &&
+        meal.strMeasure18 != "" &&
+        meal.strMeasure18 != " " &&
+        meal.strMeasure18 != null) {
       ingreditientsList.add("${meal.strMeasure18} ${meal.strIngredient18}");
     }
-    if (meal.strIngredient19 != null) {
+    if (meal.strIngredient19 != "" &&
+        meal.strMeasure19 != "" &&
+        meal.strMeasure19 != " " &&
+        meal.strMeasure19 != null) {
       ingreditientsList.add("${meal.strMeasure19} ${meal.strIngredient19}");
     }
-    if (meal.strIngredient20 != null) {
+    if (meal.strIngredient20 != "" &&
+        meal.strMeasure20 != "" &&
+        meal.strMeasure20 != " " &&
+        meal.strMeasure20 != null) {
       ingreditientsList.add("${meal.strMeasure20} ${meal.strIngredient20}");
     }
     return ingreditientsList;
-  }
-
-  List<String?> getMeasureListCalc(Meals meal) {
-    List<String?> measureList = [];
-
-    if (meal.strMeasure1 != "") {
-      measureList.add(meal.strMeasure1);
-    }
-    if (meal.strMeasure2 != "") {
-      measureList.add(meal.strMeasure2);
-    }
-    if (meal.strMeasure3 != "") {
-      measureList.add(meal.strMeasure3);
-    }
-    if (meal.strMeasure4 != "") {
-      measureList.add(meal.strMeasure4);
-    }
-    if (meal.strMeasure5 != "") {
-      measureList.add(meal.strMeasure5);
-    }
-    if (meal.strMeasure6 != "") {
-      measureList.add(meal.strMeasure6);
-    }
-    if (meal.strMeasure7 != "") {
-      measureList.add(meal.strMeasure7);
-    }
-    if (meal.strMeasure8 != "") {
-      measureList.add(meal.strMeasure8);
-    }
-    if (meal.strMeasure9 != "") {
-      measureList.add(meal.strMeasure9);
-    }
-    if (meal.strMeasure10 != "") {
-      measureList.add(meal.strMeasure10);
-    }
-    if (meal.strMeasure11 != "") {
-      measureList.add(meal.strMeasure11);
-    }
-    if (meal.strMeasure12 != "") {
-      measureList.add(meal.strMeasure12);
-    }
-    if (meal.strMeasure13 != "") {
-      measureList.add(meal.strMeasure13);
-    }
-    if (meal.strMeasure14 != "") {
-      measureList.add(meal.strMeasure14);
-    }
-    if (meal.strMeasure15 != "") {
-      measureList.add(meal.strMeasure15);
-    }
-    if (meal.strMeasure16 != "") {
-      measureList.add(meal.strMeasure16);
-    }
-    if (meal.strMeasure17 != "") {
-      measureList.add(meal.strMeasure17);
-    }
-    if (meal.strMeasure18 != "") {
-      measureList.add(meal.strMeasure18);
-    }
-    if (meal.strMeasure19 != "") {
-      measureList.add(meal.strMeasure19);
-    }
-    if (meal.strMeasure20 != "") {
-      measureList.add(meal.strMeasure20);
-    }
-    return measureList;
   }
 }
