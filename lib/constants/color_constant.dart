@@ -15,4 +15,5 @@ class ColorConstants {
   final blackSkin = const Color(0xffBD908E);
   final red = const Color.fromARGB(255, 167, 18, 11);
   final white = const Color.fromARGB(255, 255, 255, 255);
+  final blue = const Color(0xFFCAE3F1);
 }
