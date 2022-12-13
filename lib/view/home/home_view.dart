@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipes/view/food/FoodDetailScreenn.dart';
 import '../../constants/style_constant.dart';
 import '../food_api/FoodTabScreen.dart';
 import '../search/SearchScreen.dart';
