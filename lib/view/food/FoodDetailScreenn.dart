@@ -109,11 +109,11 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        Container(
+                        /*  Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30)),
                           width: displayWidth / 1.3,
-                          child: ElevatedButton(
+                      child: ElevatedButton(
                             onPressed: (() async {
                               if (await canLaunchUrlString(
                                   meal.strYoutube.toString())) {
@@ -143,7 +143,10 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                               ],
                             ),
                           ),
-                        )
+                        )*/
+                        SizedBox(
+                          height: displayWidth / 10,
+                        ),
                       ],
                     );
                   });
