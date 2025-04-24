@@ -55,7 +55,8 @@ class _SEarchScreenState extends State<SearchScreen> {
               //contentPadding: EdgeInsetsDirectional.all(1),
               suffixIcon: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.grey.withOpacity(0.0), elevation: 0),
+                      backgroundColor: Colors.grey.withOpacity(0.0),
+                      elevation: 0),
                   onPressed: () {
                     searchOfMeals!.clear();
                     _textEditingController.clear();
