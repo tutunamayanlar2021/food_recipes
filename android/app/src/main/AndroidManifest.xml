@@ -1,7 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kader.foody.one">
-   <application
-        android:label="Foody"
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:label="food_recipes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
